@@ -22,9 +22,9 @@ internal class SharedFlowEventBus(private val logger: Logger) : EventBus {
         // There might be a better way to handle this in the future.
 
         if (_events.tryEmit(event)) {
-            logger.d(TAG) { "Posted event: $event" }
+            logger.d(TAG) { "Posted an event ${event::class}" }
         } else {
-            logger.w(TAG) { "Failed to post event: $event" }
+            logger.w(TAG) { "Failed to post an event ${event::class}" }
         }
     }
 

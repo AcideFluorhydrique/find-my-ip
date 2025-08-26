@@ -1,5 +1,6 @@
 package com.maksimowiczm.findmyip.shared.core.application.usecase
 
+import com.maksimowiczm.findmyip.shared.core.application.event.EventBus
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.local.AddressHistoryLocalDataSource
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.log.Logger
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.transaction.TransactionProvider
@@ -8,6 +9,7 @@ import com.maksimowiczm.findmyip.shared.core.domain.Ip4Address
 import com.maksimowiczm.findmyip.shared.core.domain.Ip6Address
 import com.maksimowiczm.findmyip.shared.core.domain.IpAddress
 import com.maksimowiczm.findmyip.shared.core.domain.NetworkType
+import com.maksimowiczm.findmyip.shared.core.domain.event.IpAddressChangedEvent
 import kotlinx.datetime.LocalDateTime
 
 interface SaveAddressHistoryUseCase {
@@ -23,6 +25,7 @@ internal class SaveAddressHistoryUseCaseImpl(
     private val historyLocalDataSource: AddressHistoryLocalDataSource,
     private val transactionProvider: TransactionProvider,
     private val logger: Logger,
+    private val eventBus: EventBus,
 ) : SaveAddressHistoryUseCase {
     override suspend fun <A : IpAddress> save(
         address: A,
@@ -41,9 +44,9 @@ internal class SaveAddressHistoryUseCaseImpl(
                 logger.d(TAG) { "Current IP address is the same as the latest one, skipping save." }
             } else {
                 logger.d(TAG) { "Saving new current IP address" }
-                historyLocalDataSource.saveHistory(
-                    createHistory(address, domain, networkType, dateTime)
-                )
+                val newAddressHistory = createHistory(address, domain, networkType, dateTime)
+                historyLocalDataSource.saveHistory(newAddressHistory)
+                eventBus.publish(IpAddressChangedEvent(newAddress = newAddressHistory))
             }
         }
     }
