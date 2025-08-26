@@ -29,8 +29,7 @@
     <string name="action_bug_report">Zgłoś błąd na GitHubie</string>
 
     <string name="action_translate">Przetłumacz</string>
-    <string name="description_translate">Dodaj tłumaczenia, aby aplikacja była dostępna w większej liczbie języków na całym świecie.</string>
-    <string name="description_translate_short">Pomóż przetłumaczyć aplikację</string>
+    <string name="description_translate_short">Dodaj tłumaczenia, aby aplikacja była dostępna w większej liczbie języków na całym świecie.</string>
 
     <string name="headline_get_in_touch">Skontaktuj się</string>
     <string name="description_get_in_touch">Przekaż opinie, pomysły lub pytania bezpośrednio przez e-mail.</string>

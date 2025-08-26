@@ -22,6 +22,29 @@ internal val languages =
                     Author(name = "Mateusz Maksimowicz", link = "https://github.com/maksimowiczm")
                 ),
         ),
+        Translation(name = "Português (Brasil)", tag = "pt-BR", authors = listOf()),
+        Translation(
+            name = "Türkçe (Türkiye)",
+            tag = "tr-TR",
+            authors = listOf(Author(name = "mikropsoft", link = "https://github.com/mikropsoft")),
+        ),
+        Translation(name = "Русский (Россия)", tag = "ru-RU", authors = listOf()),
+        Translation(
+            name = "العربية",
+            tag = "ar-SA",
+            authors = listOf(Author(name = "Moayad ahmed", link = "https://github.com/moayad-star")),
+        ),
+        Translation(
+            name = "简体中文",
+            tag = "zh-CN",
+            authors =
+                listOf(
+                    Author(
+                        name = "Ariel Xinyue Wang",
+                        link = "https://github.com/AcideFluorhydrique",
+                    )
+                ),
+        ),
     )
 
 internal fun List<Translation>.containsTag(tag: String): Boolean = any { it.tag == tag }

@@ -21,7 +21,7 @@ fun NotificationScreenPreview() {
                     ipv6Enabled = true,
                 ),
             onIntent = {},
-            onSystemSettings = null
+            onSystemSettings = null,
         )
     }
 }
