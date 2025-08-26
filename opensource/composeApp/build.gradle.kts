@@ -86,6 +86,8 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.room.paging)
 
+            implementation(libs.androidx.datastore.preferences.core)
+
             implementation(projects.shared.common)
             implementation(projects.shared.core)
             implementation(projects.shared.feature)

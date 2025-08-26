@@ -7,12 +7,17 @@ import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressH
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressHistoryUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveCurrentIpAddressUseCase
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveCurrentIpAddressUseCaseImpl
+import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveNotificationPreferencesUseCase
+import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveNotificationPreferencesUseCaseImpl
+import com.maksimowiczm.findmyip.shared.core.application.usecase.PartialUpdateNotificationPreferencesUseCase
+import com.maksimowiczm.findmyip.shared.core.application.usecase.PartialUpdateNotificationPreferencesUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.application.usecase.RefreshAddressUseCase
 import com.maksimowiczm.findmyip.shared.core.application.usecase.RefreshAddressUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.application.usecase.SaveAddressHistoryUseCase
 import com.maksimowiczm.findmyip.shared.core.application.usecase.SaveAddressHistoryUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.domain.InternetProtocolVersion
 import com.maksimowiczm.findmyip.shared.core.domain.Ip4Address
+import com.maksimowiczm.findmyip.shared.core.domain.NotificationPreferences
 import kotlinx.coroutines.CoroutineScope
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
@@ -48,7 +53,26 @@ fun sharedCoreApplicationModule(applicationCoroutineScope: CoroutineScope) = mod
 
     singleOf(::SharedFlowEventBus).bind<EventBus>()
 
-    eventHandler { IpAddressChangeHandler(get()) }
+    eventHandler {
+        IpAddressChangeHandler(
+            get(),
+            get(named(NotificationPreferences::class.qualifiedName.toString())),
+            get(),
+        )
+    }
+
+    factory {
+            ObserveNotificationPreferencesUseCaseImpl(
+                get(named(NotificationPreferences::class.qualifiedName.toString()))
+            )
+        }
+        .bind<ObserveNotificationPreferencesUseCase>()
+    factory {
+            PartialUpdateNotificationPreferencesUseCaseImpl(
+                get(named(NotificationPreferences::class.qualifiedName.toString()))
+            )
+        }
+        .bind<PartialUpdateNotificationPreferencesUseCase>()
 }
 
 private fun Module.refreshAddressUseCase(protocolVersion: InternetProtocolVersion) {

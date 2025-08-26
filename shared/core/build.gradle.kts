@@ -37,6 +37,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.kotlin.reflect)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             // implementation(compose.material3)
@@ -56,6 +58,8 @@ kotlin {
             implementation(libs.androidx.paging.common)
 
             implementation(libs.androidx.room.runtime)
+
+            implementation(libs.androidx.datastore.preferences.core)
 
             implementation(projects.shared.common)
         }

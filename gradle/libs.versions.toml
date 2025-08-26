@@ -14,6 +14,7 @@ androidx-lifecycle = "2.9.2"
 androidx-testExt = "1.3.0"
 composeAndroid = "1.9.0"
 composeMultiplatform = "1.9.0-beta03"
+datastorePreferencesCore = "1.1.7"
 gmazzoBuildConfig = "5.6.7"
 koin-bom = "4.1.0"
 kotlin = "2.2.10"
@@ -33,8 +34,10 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeAndroid" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeAndroid" }
+androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferencesCore" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 androidx-testCore = { group = "androidx.test", name = "core", version.ref = "androidx-core" }
 androidx-testCore-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-core" }
 androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }

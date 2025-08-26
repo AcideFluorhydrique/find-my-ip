@@ -1,5 +1,7 @@
 package com.maksimowiczm.findmyip.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.maksimowiczm.findmyip.application.infrastructure.OpensourceAppConfig
 import com.maksimowiczm.findmyip.application.usecase.ObserveSponsorshipMethodsUseCase
 import com.maksimowiczm.findmyip.application.usecase.ObserveSponsorshipMethodsUseCaseImpl
@@ -24,6 +26,7 @@ internal val appModule = module {
     factoryOf(::FindMyIpConfig).binds(arrayOf(AppConfig::class, OpensourceAppConfig::class))
     factoryOf(::ObserveSponsorshipMethodsUseCaseImpl).bind<ObserveSponsorshipMethodsUseCase>()
     roomModule()
+    dataStoreModule()
 
     viewModelOf(::BackgroundWorkViewModel)
 }
@@ -43,4 +46,12 @@ private fun Module.roomModule() {
     factory { database.addressHistoryDao }
 
     factoryOf(::RoomAddressHistoryDataSource).bind<AddressHistoryLocalDataSource>()
+}
+
+internal const val DATASTORE_FILE_NAME = "user_preferences.preferences_pb"
+
+internal expect fun Scope.createDataStore(): DataStore<Preferences>
+
+private fun Module.dataStoreModule() {
+    single { createDataStore() }
 }

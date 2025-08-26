@@ -3,6 +3,7 @@ package com.maksimowiczm.findmyip.di
 import com.maksimowiczm.findmyip.shared.core.application.di.sharedCoreApplicationModule
 import com.maksimowiczm.findmyip.shared.core.infrastructure.di.sharedCoreInfrastructureModule
 import com.maksimowiczm.findmyip.shared.feature.home.di.sharedFeatureHomeModule
+import com.maksimowiczm.findmyip.shared.feature.notifications.di.sharedFeatureNotificationsModule
 import kotlinx.coroutines.CoroutineScope
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -24,5 +25,6 @@ internal fun initKoin(
         sharedCoreApplicationModule(applicationCoroutineScope),
         sharedCoreInfrastructureModule,
         sharedFeatureHomeModule,
+        sharedFeatureNotificationsModule,
     )
 }

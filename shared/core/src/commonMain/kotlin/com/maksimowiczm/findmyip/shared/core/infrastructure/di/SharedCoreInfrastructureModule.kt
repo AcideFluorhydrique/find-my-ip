@@ -3,10 +3,13 @@ package com.maksimowiczm.findmyip.shared.core.infrastructure.di
 import com.maksimowiczm.findmyip.shared.BuildConfig
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.date.DateProvider
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.local.CurrentAddressLocalDataSource
+import com.maksimowiczm.findmyip.shared.core.application.infrastructure.preferences.UserPreferencesDataSource
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.remote.IpAddressRemoteDataSource
 import com.maksimowiczm.findmyip.shared.core.domain.InternetProtocolVersion
 import com.maksimowiczm.findmyip.shared.core.domain.Ip4Address
 import com.maksimowiczm.findmyip.shared.core.domain.Ip6Address
+import com.maksimowiczm.findmyip.shared.core.domain.NotificationPreferences
+import com.maksimowiczm.findmyip.shared.core.infrastructure.datastore.DataStoreNotificationPreferencesDataSource
 import com.maksimowiczm.findmyip.shared.core.infrastructure.date.DateProviderImpl
 import com.maksimowiczm.findmyip.shared.core.infrastructure.fake.FakeAddressDataSource
 import com.maksimowiczm.findmyip.shared.core.infrastructure.inmemory.InMemoryIpAddressDataSource
@@ -17,6 +20,8 @@ import com.maksimowiczm.findmyip.shared.core.infrastructure.mapper.StringToAddre
 import io.ktor.client.HttpClient
 import kotlin.random.Random
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.named
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
@@ -32,6 +37,11 @@ val sharedCoreInfrastructureModule = module {
         .bind<CurrentAddressLocalDataSource<Ip4Address>>()
     single(named(InternetProtocolVersion.IPV6)) { InMemoryIpAddressDataSource<Ip6Address>() }
         .bind<CurrentAddressLocalDataSource<Ip6Address>>()
+
+    factoryOf(::DataStoreNotificationPreferencesDataSource) {
+            named(NotificationPreferences::class.qualifiedName.toString())
+        }
+        .bind<UserPreferencesDataSource<NotificationPreferences>>()
 
     if (BuildConfig.USE_FAKE) {
         fakeModule()
