@@ -73,4 +73,6 @@
     <string name="description_notifications_permission_required">Notifications permission is required to send notifications about IP changes. Please enable it in the system settings.</string>
     <string name="headline_system_notifications_settings">System notifications settings</string>
 
+    <string name="headline_system">System</string>
+
 </resources>

@@ -73,21 +73,21 @@ internal fun LanguageScreen(
             item {
                 TranslateButton(
                     onClick = onTranslate,
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.heightIn(min = 68.dp).padding(horizontal = 16.dp),
                 )
             }
             item { Spacer(Modifier.heightIn(16.dp)) }
             item {
                 ListItem(
-                    headlineContent = { Text("System") },
-                    modifier = Modifier.clickable { onUpdateLanguage(null) },
+                    headlineContent = { Text(stringResource(Res.string.headline_system)) },
+                    modifier = Modifier.heightIn(min = 68.dp).clickable { onUpdateLanguage(null) },
                     leadingContent = { RadioButton(selected = currentTag == null, onClick = null) },
                 )
             }
             items(languages) { (tag, name, authors) ->
                 ListItem(
                     headlineContent = { Text(name) },
-                    modifier = Modifier.clickable { onUpdateLanguage(tag) },
+                    modifier = Modifier.heightIn(min = 68.dp).clickable { onUpdateLanguage(tag) },
                     leadingContent = { RadioButton(selected = tag == currentTag, onClick = null) },
                     supportingContent = {
                         Column { authors.forEach { Text(it.toAnnotatedString()) } }
