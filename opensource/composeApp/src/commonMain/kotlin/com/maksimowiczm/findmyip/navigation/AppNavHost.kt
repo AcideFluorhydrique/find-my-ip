@@ -10,6 +10,7 @@ import com.maksimowiczm.findmyip.feature.sponsor.ui.SponsorRoute
 import com.maksimowiczm.findmyip.shared.core.navigation.forwardBackwardComposable
 import com.maksimowiczm.findmyip.shared.feature.home.ui.HomeRoute
 import com.maksimowiczm.findmyip.shared.feature.language.ui.LanguageRoute
+import com.maksimowiczm.findmyip.shared.feature.notifications.ui.NotificationsRoute
 import com.maksimowiczm.findmyip.shared.feature.settings.ui.SettingsRoute
 
 @Composable
@@ -41,6 +42,9 @@ internal fun AppNavHost(modifier: Modifier = Modifier.Companion) {
                 onRunInBackground = {
                     navController.navigate(Route.Background.name) { launchSingleTop = true }
                 },
+                onNotifications = {
+                    navController.navigate(Route.Notifications.name) { launchSingleTop = true }
+                },
                 onLanguage = {
                     navController.navigate(Route.Language.name) { launchSingleTop = true }
                 },
@@ -70,6 +74,11 @@ internal fun AppNavHost(modifier: Modifier = Modifier.Companion) {
                 onBack = { navController.popBackStack(Route.Background.name, inclusive = true) }
             )
         }
+        forwardBackwardComposable(Route.Notifications.name) {
+            NotificationsRoute(
+                onBack = { navController.popBackStack(Route.Notifications.name, inclusive = true) }
+            )
+        }
     }
 }
 
@@ -80,4 +89,5 @@ private enum class Route {
     Language,
     Sponsor,
     Background,
+    Notifications,
 }

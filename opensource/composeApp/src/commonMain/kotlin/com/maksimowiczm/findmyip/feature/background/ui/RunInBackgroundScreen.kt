@@ -77,9 +77,6 @@ internal fun RunInBackgroundScreen(
             }
             item { Spacer(Modifier.height(16.dp)) }
             item {
-                // TODO
-                //  Enable when notifications are implemented
-                return@item
                 Surface(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     color = MaterialTheme.colorScheme.surfaceContainer,

@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Engineering
 import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.VolunteerActivism
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -46,6 +47,7 @@ internal fun SettingsScreen(
     onBack: () -> Unit,
     onContribute: () -> Unit,
     onRunInBackground: () -> Unit,
+    onNotifications: () -> Unit,
     onLanguage: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -81,6 +83,16 @@ internal fun SettingsScreen(
                     leadingContent = { Icon(Icons.Outlined.Engineering, null) },
                     supportingContent = {
                         Text(stringResource(Res.string.description_run_in_background))
+                    },
+                )
+            }
+            item {
+                ListItem(
+                    headlineContent = { Text(stringResource(Res.string.headline_notifications)) },
+                    modifier = Modifier.heightIn(min = 68.dp).clickable { onNotifications() },
+                    leadingContent = { Icon(Icons.Outlined.Notifications, null) },
+                    supportingContent = {
+                        Text(stringResource(Res.string.description_notifications))
                     },
                 )
             }

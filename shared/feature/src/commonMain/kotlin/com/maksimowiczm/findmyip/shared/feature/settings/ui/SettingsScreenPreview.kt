@@ -8,6 +8,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun SettingsScreenPreview() {
     FindMyIpTheme {
-        SettingsScreen(onBack = {}, onContribute = {}, onRunInBackground = {}, onLanguage = {})
+        SettingsScreen(
+            onBack = {},
+            onContribute = {},
+            onRunInBackground = {},
+            onNotifications = {},
+            onLanguage = {},
+        )
     }
 }

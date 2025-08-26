@@ -6,6 +6,7 @@ android-minSdk = "26"
 android-targetSdk = "36"
 
 agp = "8.11.1"
+accompanistPermissions = "0.37.3"
 appcompat = "1.7.1"
 androidx-activity = "1.10.1"
 androidx-core = "1.7.0"
@@ -26,9 +27,9 @@ paging3 = "3.3.6"
 runner = "1.7.0"
 room = "2.8.0-rc01"
 workRuntimeKtx = "2.10.3"
-kotlinStdlib = "2.2.10"
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeAndroid" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeAndroid" }
@@ -61,7 +62,6 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -8,6 +8,7 @@ fun SettingsRoute(
     onBack: () -> Unit,
     onContribute: () -> Unit,
     onRunInBackground: () -> Unit,
+    onNotifications: () -> Unit,
     onLanguage: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -15,6 +16,7 @@ fun SettingsRoute(
         onBack = onBack,
         onContribute = onContribute,
         onRunInBackground = onRunInBackground,
+        onNotifications = onNotifications,
         onLanguage = onLanguage,
         modifier = modifier,
     )
