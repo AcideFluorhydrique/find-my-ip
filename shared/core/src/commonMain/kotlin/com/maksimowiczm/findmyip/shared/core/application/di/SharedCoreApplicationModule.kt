@@ -1,5 +1,7 @@
 package com.maksimowiczm.findmyip.shared.core.application.di
 
+import com.maksimowiczm.findmyip.shared.core.application.event.EventBus
+import com.maksimowiczm.findmyip.shared.core.application.event.SharedFlowEventBus
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressHistoryUseCase
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressHistoryUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveCurrentIpAddressUseCase
@@ -12,6 +14,7 @@ import com.maksimowiczm.findmyip.shared.core.domain.InternetProtocolVersion
 import com.maksimowiczm.findmyip.shared.core.domain.Ip4Address
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -33,6 +36,8 @@ val sharedCoreApplicationModule = module {
     observeCurrentIpAddressUseCase(InternetProtocolVersion.IPV6)
 
     factoryOf(::SaveAddressHistoryUseCaseImpl).bind<SaveAddressHistoryUseCase>()
+
+    singleOf(::SharedFlowEventBus).bind<EventBus>()
 }
 
 private fun Module.refreshAddressUseCase(protocolVersion: InternetProtocolVersion) {
