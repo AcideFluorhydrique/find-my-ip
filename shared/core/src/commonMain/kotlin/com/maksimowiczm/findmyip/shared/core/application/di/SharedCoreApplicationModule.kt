@@ -2,6 +2,7 @@ package com.maksimowiczm.findmyip.shared.core.application.di
 
 import com.maksimowiczm.findmyip.shared.core.application.event.EventBus
 import com.maksimowiczm.findmyip.shared.core.application.event.SharedFlowEventBus
+import com.maksimowiczm.findmyip.shared.core.application.eventhandler.IpAddressChangeHandler
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressHistoryUseCase
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveAddressHistoryUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.application.usecase.ObserveCurrentIpAddressUseCase
@@ -12,14 +13,22 @@ import com.maksimowiczm.findmyip.shared.core.application.usecase.SaveAddressHist
 import com.maksimowiczm.findmyip.shared.core.application.usecase.SaveAddressHistoryUseCaseImpl
 import com.maksimowiczm.findmyip.shared.core.domain.InternetProtocolVersion
 import com.maksimowiczm.findmyip.shared.core.domain.Ip4Address
+import kotlinx.coroutines.CoroutineScope
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val sharedCoreApplicationModule = module {
+private const val APPLICATION_COROUTINE_SCOPE = "APPLICATION_COROUTINE_SCOPE"
+
+fun Scope.applicationCoroutineScope(): CoroutineScope = get(named(APPLICATION_COROUTINE_SCOPE))
+
+fun sharedCoreApplicationModule(applicationCoroutineScope: CoroutineScope) = module {
+    single(named(APPLICATION_COROUTINE_SCOPE)) { applicationCoroutineScope }
+
     refreshAddressUseCase(InternetProtocolVersion.IPV4)
     refreshAddressUseCase(InternetProtocolVersion.IPV6)
 
@@ -38,6 +47,8 @@ val sharedCoreApplicationModule = module {
     factoryOf(::SaveAddressHistoryUseCaseImpl).bind<SaveAddressHistoryUseCase>()
 
     singleOf(::SharedFlowEventBus).bind<EventBus>()
+
+    eventHandler { IpAddressChangeHandler(get()) }
 }
 
 private fun Module.refreshAddressUseCase(protocolVersion: InternetProtocolVersion) {

@@ -45,8 +45,9 @@ internal class SaveAddressHistoryUseCaseImpl(
             } else {
                 logger.d(TAG) { "Saving new current IP address" }
                 val newAddressHistory = createHistory(address, domain, networkType, dateTime)
-                historyLocalDataSource.saveHistory(newAddressHistory)
-                eventBus.publish(IpAddressChangedEvent(newAddress = newAddressHistory))
+                val id = historyLocalDataSource.saveHistory(newAddressHistory)
+                val newAddressHistoryWithId = newAddressHistory.copyWithId(id)
+                eventBus.publish(IpAddressChangedEvent(newAddressHistoryWithId))
             }
         }
     }

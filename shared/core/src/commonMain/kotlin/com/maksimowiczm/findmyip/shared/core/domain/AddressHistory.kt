@@ -8,6 +8,12 @@ sealed interface AddressHistory : IpAddressString {
     val dateTime: LocalDateTime
     val networkType: NetworkType
 
+    fun copyWithId(newId: Long): AddressHistory =
+        when (this) {
+            is Ipv4 -> copy(id = newId)
+            is Ipv6 -> copy(id = newId)
+        }
+
     data class Ipv4(
         override val id: Long,
         override val domain: String?,
