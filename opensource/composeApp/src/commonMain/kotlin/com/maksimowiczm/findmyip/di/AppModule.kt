@@ -19,12 +19,16 @@ import org.koin.dsl.binds
 import org.koin.dsl.module
 
 internal val appModule = module {
+    platformModule()
+
     factoryOf(::FindMyIpConfig).binds(arrayOf(AppConfig::class, OpensourceAppConfig::class))
     factoryOf(::ObserveSponsorshipMethodsUseCaseImpl).bind<ObserveSponsorshipMethodsUseCase>()
     roomModule()
 
     viewModelOf(::BackgroundWorkViewModel)
 }
+
+internal expect fun Module.platformModule()
 
 internal const val DATABASE_NAME = "database"
 

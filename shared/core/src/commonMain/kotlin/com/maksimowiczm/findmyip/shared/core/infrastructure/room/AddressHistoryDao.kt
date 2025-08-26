@@ -28,7 +28,8 @@ interface AddressHistoryDao {
         ipv6: Boolean,
     ): PagingSource<Int, AddressHistoryEntity>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT) suspend fun insert(entity: AddressHistoryEntity)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(entity: AddressHistoryEntity): Long
 
     @Query(
         """

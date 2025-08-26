@@ -8,6 +8,8 @@ import com.maksimowiczm.findmyip.shared.core.application.infrastructure.log.Find
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.log.Logger
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.network.AndroidNetworkTypeObserver
 import com.maksimowiczm.findmyip.shared.core.application.infrastructure.network.NetworkTypeObserver
+import com.maksimowiczm.findmyip.shared.core.application.infrastructure.notification.AndroidNotificationService
+import com.maksimowiczm.findmyip.shared.core.application.infrastructure.notification.NotificationService
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
@@ -17,4 +19,5 @@ internal actual fun Module.platformModule() {
     factoryOf(::AndroidNetworkTypeObserver).bind<NetworkTypeObserver>()
     factoryOf(::WorkManagerPeriodicWorkManager).bind<PeriodicWorkManager>()
     single { FindMyIpLogger }.bind<Logger>()
+    factoryOf(::AndroidNotificationService).bind<NotificationService>()
 }

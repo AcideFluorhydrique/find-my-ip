@@ -11,7 +11,7 @@ interface AddressHistoryLocalDataSource {
         ipv6: Boolean,
     ): Flow<PagingData<AddressHistory>>
 
-    suspend fun saveHistory(history: AddressHistory)
+    suspend fun saveHistory(history: AddressHistory): Long
 
     suspend fun getLatestIp4Address(): AddressHistory?
 

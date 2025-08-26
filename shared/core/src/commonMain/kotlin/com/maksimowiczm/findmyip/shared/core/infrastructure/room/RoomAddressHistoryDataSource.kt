@@ -32,9 +32,7 @@ class RoomAddressHistoryDataSource(
             .flow
             .map { data -> data.map { it.toModel() } }
 
-    override suspend fun saveHistory(history: AddressHistory) {
-        dao.insert(history.toEntity())
-    }
+    override suspend fun saveHistory(history: AddressHistory) = dao.insert(history.toEntity())
 
     override suspend fun getLatestIp4Address(): AddressHistory? {
         val entity = dao.getLatestAddress(AddressVersion.IPV4)

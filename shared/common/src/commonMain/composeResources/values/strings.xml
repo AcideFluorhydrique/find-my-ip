@@ -55,4 +55,6 @@
 
     <string name="hint_combine_periodic_refresh_with_notifications">You can combine periodic work with notifications</string>
 
+    <string name="notification_channel_address_changed">Address Changed</string>
+
 </resources>
