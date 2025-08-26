@@ -12,6 +12,8 @@ class GenerateAppMetadataScreenshots {
     @Test fun homeScreen() = runComposeUiTest { capture(HomeScreenScreenshot) }
 
     @Test fun settingsScreen() = runComposeUiTest { capture(SettingsScreenScreenshot) }
+
+    @Test fun notificationScreen() = runComposeUiTest { capture(NotificationScreenScreenshot) }
 }
 
 @OptIn(ExperimentalTestApi::class) expect suspend fun ComposeUiTest.capture(screenshot: Screenshot)
