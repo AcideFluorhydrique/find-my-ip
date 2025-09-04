@@ -1,3 +1,7 @@
+[🇬🇧English](./README.md) | [🇨🇳中文](./README.zh-CN.md)
+
+---
+
 [![F-Droid](https://img.shields.io/f-droid/v/com.maksimowiczm.findmyip?color=b4eb12&label=F-Droid&logo=fdroid&logoColor=1f78d2)](f-droid.org/repository/browse/?fdid=com.maksimowiczm.findmyip)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maksimowiczm/find-my-ip?color=black&label=Stable&logo=github)](https://github.com/maksimowiczm/find-my-ip/releases/latest/)
 [![GitHub all releases](https://img.shields.io/github/downloads/maksimowiczm/find-my-ip/total?label=Downloads&logo=github)](https://github.com/maksimowiczm/find-my-ip/releases/)
